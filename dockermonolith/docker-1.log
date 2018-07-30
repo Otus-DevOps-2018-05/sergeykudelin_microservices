@@ -4,3 +4,8 @@ ubuntu                          16.04               7aa3602ab41e        3 days a
 kerberos/machinery              latest              cd19f2d6a311        12 days ago         1.26GB
 kerberos/web                    latest              b2461ba0e53f        2 weeks ago         2.13GB
 hello-world                     latest              2cb0d9787c4d        2 weeks ago         1.85kB
+
+Образы (images) содержат информацию о файловой структуре в виде связки слоев (snapshots) которые были применены.
+Контейнер (containers) содержит условия и параметры запуска образа и порядок его взаимодействия с хостовой ОС.
+
+
