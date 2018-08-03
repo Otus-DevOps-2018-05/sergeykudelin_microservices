@@ -12,3 +12,16 @@ module "docker" {
   count             = "${var.count}"
   docker_disk_image = "${var.docker_disk_image}"
 }
+
+resource "google_compute_firewall" "firewall_docker-host" {
+  name    = "allow-docker-default"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["9292","22"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["docker"]
+}

@@ -1,20 +1,21 @@
 ---
-- name: Deploy App
-  hosts: tag_reddit-app
+- name: Run docker container
+  hosts: all
+  become: true
   tasks:
-    - name: Fetch the latest version of application code
-      git:
-        repo: 'https://github.com/express42/reddit.git'
-        dest: /home/appuser/reddit
-        version: monolith
-      notify: restart puma
 
-    - name: bundle install
-      bundler:
+    - name: Pull image
+      docker_image:
+        name: sereganaci/otus-reddit
+        tag: 1.0
         state: present
-        chdir: /home/appuser/reddit
 
-  handlers:
-  - name: restart puma
-    become: true
-    systemd: name=puma state=restarted
+    - name: Run container
+      docker_container:
+        name: reddit
+        image: sereganaci/otus-reddit:1.0
+        detach: yes
+        network_mode: host
+        ports:
+          - "9292:9292"
+        state: started
