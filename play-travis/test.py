@@ -1,10 +1,5 @@
-import unittest
-
-class NumbersTest(unittest.TestCase):
-
-    def test_equal(self):
-        self.assertEqual(2 + 2, 4)
-
-if __name__ == '__main__':
-    unittest.main()
-
+dist: trusty
+sudo: required
+language: bash
+before_install:
+  - curl https://raw.githubusercontent.com/express42/otus-homeworks/2018-05/run.sh | bash
