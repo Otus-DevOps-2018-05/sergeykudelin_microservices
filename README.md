@@ -1,5 +1,18 @@
 # Homeworks
 
+## Homework №3
+
+* Запускаем контейнеры с другими алиасами и переопределяем переменные окружения при запуске контейнера:
+                
+                docker run -d --network=reddit --network-alias=db mongo:latest docker run -d --network=reddit --network-alias=post1 -e "POST_DATABASE_HOST=db" sereganaci/post:1.0
+                
+                docker run -d --network=reddit --network-alias=comment1 -e "COMMENT_DATABASE_HOST=db" sereganaci/comment:1.0 
+                
+                docker run -d --network=reddit -p 9292:9292   -e "POST_SERVICE_HOST=post1" -e "COMMENT_SERVICE_HOST=comment1" sereganaci/ui:1.0
+                
+* Образ на основании alpine (ui/Dockerfile.1)
+
+
 ## Homework №2
 
 * Подняли хост на GCE под Docker-CE средствами docker-machine
