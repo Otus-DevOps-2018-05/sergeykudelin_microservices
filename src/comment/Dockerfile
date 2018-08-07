@@ -1,15 +1,14 @@
-FROM ruby:2.5.1
-RUN apt-get update -qq && apt-get install -y --no-install-recommends build-essential=12.3 && apt-get clean && rm -rf  /var/lib/apt/lists/*
-
+FROM ruby:2.2
 ENV APP_HOME /app
-RUN mkdir $APP_HOME
-WORKDIR $APP_HOME
-
-COPY Gemfile* $APP_HOME/
-RUN bundle install
-COPY . $APP_HOME
-
 ENV COMMENT_DATABASE_HOST comment_db
 ENV COMMENT_DATABASE comments
+WORKDIR $APP_HOME
+COPY Gemfile* $APP_HOME/
+
+RUN apt-get update -qq && apt-get install -y build-essential=11.7 --no-install-recommends \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+RUN bundle install
+COPY . $APP_HOME
 
 CMD ["puma"]
