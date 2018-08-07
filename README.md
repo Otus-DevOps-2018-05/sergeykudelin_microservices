@@ -4,7 +4,9 @@
 
 * Запускаем контейнеры с другими алиасами и переопределяем переменные окружения при запуске контейнера:
                 
-                docker run -d --network=reddit --network-alias=db mongo:latest docker run -d --network=reddit --network-alias=post1 -e "POST_DATABASE_HOST=db" sereganaci/post:1.0
+                docker run -d --network=reddit --network-alias=db 
+                
+                mongo:latest docker run -d --network=reddit --network-alias=post1 -e "POST_DATABASE_HOST=db" sereganaci/post:1.0
                 
                 docker run -d --network=reddit --network-alias=comment1 -e "COMMENT_DATABASE_HOST=db" sereganaci/comment:1.0 
                 
