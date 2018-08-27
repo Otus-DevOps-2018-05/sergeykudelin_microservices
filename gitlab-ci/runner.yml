@@ -1,0 +1,18 @@
+---
+- name: Runner
+  hosts: all
+  become: true
+  gather_facts: False
+  tasks:
+  - name: data container
+    docker_container:
+      name: gitlab-runner
+      image: gitlab/gitlab-runner:latest
+      detach: yes
+      restart_policy: always
+      volumes:
+      - /srv/gitlab-runner/config:/etc/gitlab-runner
+      volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+
