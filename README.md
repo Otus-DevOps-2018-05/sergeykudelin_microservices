@@ -5,8 +5,10 @@ GitlabCI #1
 Основная задача
 
 Задание со звездочкой:
-1. 
-2. 
+1.dadsadds
+
+2.Добавлена интеграция с личным каналом в группе DevOps Team
+`https://devops-team-otus.slack.com/messages/CB569E79D`
 
 ## Homework №4
 
