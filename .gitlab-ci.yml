@@ -46,6 +46,7 @@ deploy_dev_job:
 
 staging:
  stage: stage
+ when: manual
  script:
   - echo 'Deploy stage'
  environment:
@@ -54,6 +55,7 @@ staging:
 
 production:
  stage: production
+ when: manual
  script:
   - echo 'Deploy production'
  environment:
