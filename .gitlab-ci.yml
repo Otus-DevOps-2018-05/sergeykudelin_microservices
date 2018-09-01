@@ -37,9 +37,10 @@ test_unit_job:
  - ruby simpletest.rb
 
 deploy_dev_job:
- stage
+ stage: stage
+ script:
   - echo 'Deploy'
- environment:: review
+ environment: review
  script:
   name: dev
   url: http://dev.example.com
@@ -47,8 +48,9 @@ deploy_dev_job:
 staging:
  stage: stage
  when: manual
+ script:
   - echo 'Deploy staging'
- environment:: review
+ environment: review
  script:
   name: dev
   url: http://dev.example.com
@@ -56,8 +58,9 @@ staging:
 production:
  stage: production
  when: manual
+ script:
   - echo 'Deploy production'
- environment:: review
+ environment: review
  script:
   name: dev
   url: http://dev.example.com
