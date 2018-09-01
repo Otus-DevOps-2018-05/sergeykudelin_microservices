@@ -4,14 +4,16 @@ stages:
   - build
   - test
   - review
+  - staging
+  - production
 
 variables:
  DATABASE_URL: 'mongodb://mongo/user_posts'
 
 before_script:
  - cd reddit
- - bundle install 
- 
+ - bundle install
+
 build_job:
   stage: build
   script:
@@ -41,3 +43,19 @@ deploy_dev_job:
  environment:
   name: dev
   url: http://dev.example.com
+
+stage:
+ stage: staging
+ script:
+  - echo 'Deploy stage'
+ environment:
+  name: stage
+  url: http://beta.example.com
+
+production:
+ stage: production
+ script:
+  - echo 'Deploy production'
+ environment:
+  name: prod
+  url: http://example.com
