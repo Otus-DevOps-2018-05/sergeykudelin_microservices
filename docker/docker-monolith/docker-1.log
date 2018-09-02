@@ -1,0 +1,12 @@
+REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE
+sergeykudelin/ubuntu-tmp-file   latest              033c060c6794        26 seconds ago      115MB
+ubuntu                          16.04               7aa3602ab41e        3 days ago          115MB
+kerberos/machinery              latest              cd19f2d6a311        12 days ago         1.26GB
+kerberos/web                    latest              b2461ba0e53f        2 weeks ago         2.13GB
+hello-world                     latest              2cb0d9787c4d        2 weeks ago         1.85kB
+
+Образы (images) содержат информацию о файловой структуре в виде связки слоев (snapshots) которые были применены и доступные только на чтение.
+Контейнер (containers) содержит условия, порядок его взаимодействия с хостовой ОС и дополнительно слой на запись поверх слоев чтение которыми он владеет на основании образа.
+
+
+

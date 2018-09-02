@@ -11,3 +11,4 @@ jdauphant.nginx
 vault.key
 .vscode/
 .env
+docker-compose.*
