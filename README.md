@@ -1,4 +1,13 @@
-# Homeworks
+# Homeworks 7
+Monitoring-1
+Основная задача
+* Поднятие мониторинга на базе Prometheus
+* Мониторинг встроенных метрик в приложение
+* Добавление exporter метрик docker хоста на базе node-exporter-а
+* https://hub.docker.com/u/sereganaci/
+
+Задание со звездочкой:
+* Пока не отработано. В процессе ...
 
 ## Homework 8
 https://hub.docker.com/u/sereganaci/
@@ -6,6 +15,13 @@ https://hub.docker.com/u/sereganaci/
 ## Homework 7
 
 ## Homework 6
+GitlabCI #2
+Основная задача
+* Добавлены стадии stage & production, которые исполняются только при появлении тега с версией в формате D+.D+.D+
+* Добавлены шаг с созданием динамического окружения на основании наименование ветки
+
+Задание со звездочкой:
+* Пока не отработано. В процессе
 
 ## Homework №5
 GitlabCI #1
