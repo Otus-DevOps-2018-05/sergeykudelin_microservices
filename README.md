@@ -7,7 +7,7 @@ Monitoring-1
 * https://hub.docker.com/u/sereganaci/
 
 Задание со звездочкой:
-* Пока не отработано. В процессе
+* Пока не отработано. В процессе ...
 
 ## Homework 6
 GitlabCI #2
