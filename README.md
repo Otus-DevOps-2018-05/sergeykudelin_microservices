@@ -1,14 +1,29 @@
 # Homeworks
 
+## Homework №4
+
+Основные задачи
+
+* Сравнил работу драйвера none, host
+* Изучил работу драйвероа bridge.
+* Построил работу сервиса с одной общей сетью и разделенной без доступа для UI к БД.
+* Создал образы docker-compose: с одной bridge-сетью и с двумя bridge-сетях.
+* Выполнена параметризация в файл .env.
+* Параметеризирован значение базового имени проекта.
+
+(Задание со *)
+
+* Создан файл docker-compose.override.yml, который позволяет:
+* изменять код каждого из приложений, не выполняя сборку образа;
+* запускать puma для ruby приложений в debug режиме с двумя воркерами (флаги --debug и -w 2).
+
 ## Homework №3
 
-* Запускаем контейнеры с другими алиасами и переопределяем переменные окружения при запуске контейнера:
-                
+* Запускаем контейнеры с другими алиасами и переопределяем переменные окружения при запуске контейнера:    
                 docker run -d --network=reddit --network-alias=db -v reddit_db:/data/db mongo:latest
                 docker run -d --network=reddit --network-alias=post -e "POST_DATABASE_HOST=db" sereganaci/post:1.0
                 docker run -d --network=reddit --network-alias=comment -e "COMMENT_DATABASE_HOST=db" sereganaci/comment:1.0
                 docker run -d --network=reddit -p 9292:9292   -e "POST_SERVICE_HOST=post" -e "COMMENT_SERVICE_HOST=comment" sereganaci/ui:1.0
-                
 * Образ на основании alpine (ui/Dockerfile.1)
 
 ## Homework №2
