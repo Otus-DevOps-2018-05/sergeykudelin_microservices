@@ -33,7 +33,7 @@ services:
       - front_net
       - back_net
   cadvisor:
-    image: google/cadvisor:v0.29.0 
+    image: google/cadvisor:v0.29.0
     volumes:
       - '/:/rootfs:ro'
       - '/var/run:/var/run:rw'
