@@ -9,44 +9,25 @@ services:
       back_net:
           aliases:
               - comment_db
-
-  prometheus:
-    image: ${USERNAME}/prometheus
-    ports:
-      - '9090:9090'
-    volumes:
-      - prometheus_data:/prometheus
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--storage.tsdb.retention=1d'
-    networks:
-        - front_net
-        - metrics_net
-
-  node-exporter:
-    image: prom/node-exporter:v0.15.2
-    user: root
-    volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /:/rootfs:ro
-    command:
-      - '--path.procfs=/host/proc'
-      - '--path.sysfs=/host/sys'
-      - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
-    networks:
-      - metrics_net
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
 
   ui:
-    image: "${USERNAME}/ui"
+    image: "${USER_NAME}/ui:${ui_version}"
     ports:
       - "${ui_exposed_web:-9292}:9292/tcp"
     networks:
       - front_net
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: service.ui
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
 
   post:
-    image: "${USERNAME}/post"
+    image: "${USER_NAME}/post:${post_version}"
     networks:
       - back_net
       - front_net
@@ -55,24 +36,24 @@ services:
       options:
         fluentd-address: localhost:24224
         tag: service.post
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
 
   comment:
-    image: "${USERNAME}/comment"
+    image: "${USER_NAME}/comment:${comment_version}"
     networks:
       - front_net
       - back_net
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
 
 volumes:
   post_db:
-  prometheus_data:
 
 networks:
   front_net:
-    ipam:
-      config:
-        - subnet: 10.0.1.0/24
+    external:
+      name: frontend
   back_net:
-    ipam:
-      config:
-        - subnet: 10.0.2.0/24
-  metrics_net:
+    external:
+      name: backend

@@ -6,7 +6,7 @@ volumes:
 
 services:
   prometheus:
-    image: ${USERNAME}/prometheus
+    image: ${USER_NAME}/prometheus
     ports:
       - 9090:9090
     volumes:
