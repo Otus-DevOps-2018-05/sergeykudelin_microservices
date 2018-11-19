@@ -1,5 +1,23 @@
 # Homeworks
 
+## Homework №5
+GitlabCI #1
+Основная задача
+* Установка Gitlab через Omnibox
+* Конфигурация репозитория и тестового pipeline
+* Ручная настройка docker-runner-а
+
+Задание со звездочкой:
+1. Автоматизация установки runner-ов
+* Playbook install docker on clear host
+`docker-monolith/infra/ansible/playbooks/docker.yml`
+* Playbook установки docker-runner с последующей его регистрацией с указанием входным реквизитов регистрации через переменные
+`docker-monolith/infra/ansible/playbooks/setup_runner.yml`
+
+
+2.Добавлена интеграция с личным каналом в группе DevOps Team
+`https://devops-team-otus.slack.com/messages/CB569E79D`
+
 ## Homework №4
 
 Основные задачи

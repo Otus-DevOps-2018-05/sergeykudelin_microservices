@@ -1,6 +1,6 @@
 ---
 - name: Install Docker CE
-  hosts: all
+  hosts: tag_docker
   become: true
   tasks:
     - name: Add Docker GPG key
@@ -35,5 +35,3 @@
         name: docker
         enabled: yes
         state: started
-
-    

@@ -1,0 +1,4 @@
+all:
+  hosts:
+    srv01:
+      ansible_host: 35.195.22.39

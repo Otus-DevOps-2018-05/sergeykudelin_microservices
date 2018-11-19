@@ -1,0 +1,36 @@
+---
+- name: Prepare ansible
+  become: true
+  hosts: tag_docker
+  gather_facts: False
+  ######### VARIABLES ##################
+  vars:
+    runner_name: "docker-runner01"
+    myurl: "http://gitlab.healthfamilies.me"
+    mytoken: "g71rJFkd2fDKQ5JAw1nD"
+  ######################################
+  tasks:
+    - name: Install python for Ansible
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      changed_when: False
+    - name: Set local timezone
+      command: timedatectl set-timezone Europe/Kiev
+    - name: Generate locale
+      command: locale-gen en_US.UTF-8
+    - name: Set LC_ALL
+      set_fact:
+        LC_ALL: '{{ lookup("env", "LC_ALL") == "en_US.UTF-8" }}'
+    - name: pull an image
+      docker_image:
+        name: gitlab/gitlab-runner:latest
+    - name: Start docker runner
+      docker_container:
+        name: "{{runner_name}}"
+        image: gitlab/gitlab-runner
+        state: started
+        restart_policy: always
+        volumes:
+          - /srv/gitlab-runner/config:/etc/gitlab-runner
+          - /var/run/docker.sock:/var/run/docker.sock
+    - name: Registration runner
+      raw: docker exec -it {{runner_name}} gitlab-runner register --non-interactive --executor "docker" --docker-image alpine:3 -url {{myurl}} --registration-token {{mytoken}} --description {{runner_name}} --tag-list "docker,aws" --run-untagged --locked="false"
